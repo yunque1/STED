@@ -1,8 +1,27 @@
 ---
+import { languages } from '../i18n/translations';
+
+interface Props {
+  lang: keyof typeof languages;
+  content: {
+    brand: string;
+    home: string;
+    features: string;
+    about: string;
+    contact: string;
+  };
+}
+
+const { lang, content } = Astro.props;
+
+import { defaultLang } from '../i18n/translations';
+
+const getPath = (l: string) => l === defaultLang ? '/' : `/${l}`;
+
 const navItems = [
-  { name: '首页', href: '#' },
-  { name: '解决方案', href: '#features' },
-  { name: '关于我们', href: '#about' },
+  { name: content.home, href: getPath(lang) },
+  { name: content.features, href: `${getPath(lang)}#features` },
+  { name: content.about, href: `${getPath(lang)}#about` },
 ];
 ---
 
@@ -11,14 +30,14 @@ const navItems = [
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
       <div class="flex-shrink-0">
-        <a href="/" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-          施德科技
+        <a href={getPath(lang)} class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+          {content.brand}
         </a>
       </div>
 
       <!-- Desktop Menu -->
       <div class="hidden md:block">
-        <div class="ml-10 flex items-baseline space-x-8">
+        <div class="ml-10 flex items-center space-x-8">
           {navItems.map((item) => (
             <a
               href={item.href}
@@ -31,8 +50,28 @@ const navItems = [
             href="#contact"
             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-lg shadow-blue-500/20"
           >
-            联系我们
+            {content.contact}
           </a>
+
+          <!-- Language Switcher -->
+          <div class="relative group ml-4">
+            <button class="flex items-center text-slate-300 hover:text-white text-sm font-medium">
+              <svg class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+              {languages[lang]}
+            </button>
+            <div class="absolute right-0 mt-2 w-32 bg-slate-800 rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-slate-700">
+              {Object.entries(languages).map(([code, label]) => (
+                <a
+                  href={getPath(code)}
+                  class={`block px-4 py-2 text-sm ${code === lang ? 'text-blue-400 bg-slate-700/50' : 'text-slate-300 hover:bg-slate-700 hover:text-white'}`}
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 

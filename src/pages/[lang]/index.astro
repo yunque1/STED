@@ -1,12 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import Footer from '../components/Footer.astro';
-import { languages, ui, defaultLang } from '../i18n/translations';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import Footer from '../../components/Footer.astro';
+import { languages, ui, defaultLang } from '../../i18n/translations';
 
-const lang = defaultLang;
-const content = ui[lang];
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter(lang => lang !== defaultLang)
+    .map((lang) => ({
+      params: { lang },
+    }));
+}
+
+const { lang } = Astro.params;
+const content = ui[lang as keyof typeof ui] || ui[defaultLang];
 ---
 
 <Layout title={`${content.hero.companyName}`}>
