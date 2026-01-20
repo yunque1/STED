@@ -7,6 +7,17 @@ import { languages, ui, defaultLang } from '../i18n/translations';
 
 const lang = defaultLang;
 const content = ui[lang];
+const featureImages = [
+  { src: '/images/asic-chip.svg', alt: 'ASIC chip' },
+  { src: '/images/miner-rig.svg', alt: 'Miner rig' },
+  { src: '/images/data-center.svg', alt: 'Data center' }
+];
+const showcaseImages = [
+  { src: 'https://source.unsplash.com/FO7JIlwjOtU/1600x900', alt: 'product' },
+  { src: 'https://source.unsplash.com/2JJ3wBHu4_0/1600x900', alt: 'deployment' },
+  { src: 'https://source.unsplash.com/alVFq_05CbA/1600x900', alt: 'factory' },
+  { src: 'https://source.unsplash.com/n95VMLxqM2I/1600x900', alt: 'meeting' }
+];
 ---
 
 <Layout title={`${content.hero.companyName}`}>
@@ -37,6 +48,7 @@ const content = ui[lang];
                   } />
 								</svg>
 							</div>
+              <img src={featureImages[index].src} alt={featureImages[index].alt} class="w-full h-32 object-cover rounded-lg border border-slate-700/50 mb-4 opacity-80" />
 							<h3 class="text-xl font-semibold text-white mb-2">{item.title}</h3>
 							<p class="text-slate-400">{item.desc}</p>
 						</div>
@@ -44,6 +56,26 @@ const content = ui[lang];
 				</div>
 			</div>
 		</section>
+
+    <section id="showcase" class="py-20 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-white mb-4">{content.gallery.title}</h2>
+          <p class="text-slate-400">{content.gallery.subtitle}</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {showcaseImages.map((img, i) => (
+            <div class="group relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-800">
+              <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-44 md:h-56 object-cover opacity-80 group-hover:opacity-100 transition-all duration-300" onerror={`this.onerror=null; this.src='/images/${['product-photo.svg','deployment-photo.svg','factory-photo.svg','meeting-photo.svg'][i]}'`} />
+              <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-600/20 mix-blend-screen"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3 bg-slate-900/60 backdrop-blur-sm">
+                <p class="text-sm text-slate-200">{content.gallery.labels[i]}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
 		<!-- About/Why Us Section -->
 		<section id="about" class="py-20 relative overflow-hidden">
@@ -74,7 +106,8 @@ const content = ui[lang];
 					</div>
 					<div class="mt-10 lg:mt-0 relative">
 						<div class="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur-lg opacity-30"></div>
-						<div class="relative bg-slate-800 rounded-xl border border-slate-700 p-8">
+						<div class="relative bg-slate-800 rounded-xl border border-slate-700 p-8 overflow-hidden">
+              <img src="/images/data-center.svg" alt="data center" class="absolute inset-0 w-full h-full object-cover opacity-10" />
 							<h3 class="text-xl font-bold text-white mb-4">{content.about.aboutTitle}</h3>
 							<p class="text-slate-300 mb-4">
 								{content.about.aboutDesc1}

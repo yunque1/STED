@@ -55,6 +55,11 @@ export const ui = {
       aboutDesc1: 'STED 科技是一家專注於區塊鏈底層硬件研發的高科技企業。我們致力於為全球客戶提供最先進的數字貨幣挖掘設備與解決方案。',
       aboutDesc2: '依托強大的研發實力與供應鏈整合能力，我們已成功推出多款高性能 ASIC 礦機，服務覆蓋北美、歐洲、中亞等多個國家和地區。我們不僅是礦機製造商，更是您值得信賴的區塊鏈基礎設施合作夥伴。',
     },
+    gallery: {
+      title: '產品展示',
+      subtitle: '品牌形象與實拍',
+      labels: ['產品實拍', '上架部署', '工廠車間', '會議簽約'],
+    },
     footer: {
       companyName: 'STED 科技',
       copyright: '© {year} STED 科技. All rights reserved.',
@@ -108,6 +113,11 @@ export const ui = {
       aboutTitle: 'About Us',
       aboutDesc1: 'STED TECHNOLOGY is a high-tech enterprise focused on blockchain underlying hardware R&D. We are committed to providing the most advanced digital currency mining equipment and solutions to global customers.',
       aboutDesc2: 'Relying on strong R&D capabilities and supply chain integration, we have successfully launched multiple high-performance ASIC miners, serving customers in North America, Europe, Central Asia, and other regions. We are not just a miner manufacturer, but your trusted blockchain infrastructure partner.',
+    },
+    gallery: {
+      title: 'Showcase',
+      subtitle: 'Brand imagery & product shots',
+      labels: ['Product', 'Rack Deployment', 'Factory Floor', 'Contract Signing'],
     },
     footer: {
       companyName: 'STED TECHNOLOGY',
