@@ -1,0 +1,42 @@
+---
+interface Props {
+  tag?: 'h1' | 'h2' | 'p' | 'span' | 'a';
+  variant?: 'displayXL' | 'textBase';
+  class?: string;
+  href?: string;
+}
+
+const { tag = 'p', variant = 'textBase', class: className = '', href } = Astro.props as Props;
+
+const variantClass =
+  variant === 'displayXL'
+    ? 'text-5xl md:text-7xl font-extrabold tracking-tight'
+    : 'text-base';
+---
+
+{tag === 'h1' && (
+  <h1 class={`${variantClass} ${className}`}>
+    <slot />
+  </h1>
+)}
+{tag === 'h2' && (
+  <h2 class={`${variantClass} ${className}`}>
+    <slot />
+  </h2>
+)}
+{tag === 'p' && (
+  <p class={`${variantClass} ${className}`}>
+    <slot />
+  </p>
+)}
+{tag === 'span' && (
+  <span class={`${variantClass} ${className}`}>
+    <slot />
+  </span>
+)}
+{tag === 'a' && href && (
+  <a href={href} class={`${variantClass} ${className}`}>
+    <slot />
+  </a>
+)}
+

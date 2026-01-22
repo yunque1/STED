@@ -1,0 +1,35 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary';
+  size?: 'small' | 'medium';
+  isLink?: boolean;
+  href?: string;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'medium',
+  isLink = false,
+  href = '#',
+  class: className = '',
+} = Astro.props as Props;
+
+const sizeClass = size === 'small' ? 'px-6 py-2' : 'px-10 py-3';
+const variantClass =
+  variant === 'primary'
+    ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-xl'
+    : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700';
+const baseClass = `rounded-full font-semibold transition-all ${sizeClass} ${variantClass}`;
+---
+
+{isLink ? (
+  <a href={href} class={`${baseClass} ${className}`}>
+    <slot />
+  </a>
+) : (
+  <button class={`${baseClass} ${className}`}>
+    <slot />
+  </button>
+)}
+

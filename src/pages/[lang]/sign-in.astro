@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Wrapper from '../../components/ui/Wrapper.astro';
+import Text from '../../components/ui/Text.astro';
+import Button from '../../components/ui/Button.astro';
+import { languages, defaultLang, ui } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((l) => l !== defaultLang)
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const content = ui[lang as keyof typeof ui] || ui[defaultLang];
+---
+
+<Layout title={content.nav.signIn}>
+  <main class="pt-28 pb-24">
+    <Wrapper>
+      <div class="max-w-md mx-auto rounded-2xl border border-slate-700 bg-slate-800 p-8">
+        <Text tag="h1" variant="displayXL" class="text-white text-4xl md:text-5xl mb-6">{content.nav.signIn}</Text>
+        <p class="text-slate-300 mb-6">Access your account to manage projects and orders.</p>
+        <form class="space-y-4">
+          <div>
+            <label class="block text-sm text-slate-300 mb-2">Email</label>
+            <input type="email" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-slate-200" placeholder="name@example.com" />
+          </div>
+          <div>
+            <label class="block text-sm text-slate-300 mb-2">Password</label>
+            <input type="password" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-slate-200" placeholder="••••••••" />
+          </div>
+          <div class="flex items-center justify-between">
+            <a href="/sign-up" class="text-sm text-blue-400 hover:text-blue-300">Create account</a>
+            <Button isLink={false} variant="primary" size="medium" class="shadow-blue-500/25">Continue</Button>
+          </div>
+        </form>
+      </div>
+    </Wrapper>
+  </main>
+</Layout>

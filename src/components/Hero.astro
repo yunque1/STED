@@ -10,41 +10,41 @@ interface Props {
 }
 
 const { content } = Astro.props;
+import Text from './ui/Text.astro';
+import Button from './ui/Button.astro';
+import Wrapper from './ui/Wrapper.astro';
 ---
 
 <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
-    <img src="https://source.unsplash.com/2JJ3wBHu4_0/1600x900" alt="data center corridor" class="absolute inset-0 w-full h-full object-cover opacity-25" onerror="this.onerror=null; this.style.display='none';" />
+    <img src="https://source.unsplash.com/2JJ3wBHu4_0/1600x900" alt="electronics manufacturing facility" class="absolute inset-0 w-full h-full object-cover opacity-25" onerror="this.onerror=null; this.style.display='none';" />
     <img src="/images/chip-grid.svg" alt="chip grid" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-screen" />
     <div class="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
     <div class="absolute bottom-20 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 mix-blend-soft-light"></div>
+    <div class="absolute -top-24 -left-24 w-[36rem] h-[36rem] rounded-full bg-gradient-to-tr from-pink-500/15 to-blue-500/15 blur-3xl"></div>
+    <div class="absolute -bottom-24 -right-24 w-[36rem] h-[36rem] rounded-full bg-gradient-to-tr from-indigo-500/15 to-emerald-500/15 blur-3xl"></div>
   </div>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8">
+  <Wrapper class="relative z-10 text-center">
+    <Text tag="h1" variant="displayXL" class="mb-8">
       <span class="block text-slate-100 mb-2">{content.companyName}</span>
-      <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 drop-shadow-lg">
         {content.headline}
       </span>
-    </h1>
-    
-    <p class="mt-6 max-w-2xl mx-auto text-xl text-slate-400">
+    </Text>
+
+    <Text tag="p" variant="textBase" class="mt-6 max-w-3xl mx-auto text-xl text-slate-300">
       {content.subhead}
-    </p>
+    </Text>
 
     <div class="mt-10 flex justify-center gap-4">
-      <a
-        href="#contact"
-        class="px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40"
-      >
+      <Button isLink={true} href="#contact" variant="primary" size="medium" class="shadow-blue-500/25 hover:shadow-blue-500/40">
         {content.ctaPrimary}
-      </a>
-      <a
-        href="#features"
-        class="px-8 py-3 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold transition-all border border-slate-700"
-      >
+      </Button>
+      <Button isLink={true} href="#features" variant="secondary" size="medium" class="backdrop-blur">
         {content.ctaSecondary}
-      </a>
+      </Button>
     </div>
-  </div>
+  </Wrapper>
 </section>

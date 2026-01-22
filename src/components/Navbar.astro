@@ -9,19 +9,25 @@ interface Props {
     features: string;
     about: string;
     contact: string;
+    signIn: string;
+    signUp: string;
+    terms: string;
   };
 }
 
 const { lang, content } = Astro.props;
 
 import { defaultLang } from '../i18n/translations';
+import Button from './ui/Button.astro';
 
 const getPath = (l: string) => l === defaultLang ? '/' : `/${l}`;
+const join = (l: string, segment: string) => l === defaultLang ? `/${segment}` : `/${l}/${segment}`;
 
 const navItems = [
   { name: content.home, href: getPath(lang) },
   { name: content.features, href: `${getPath(lang)}#features` },
   { name: content.about, href: `${getPath(lang)}#about` },
+  { name: content.terms, href: join(lang, 'terms') },
 ];
 ---
 
@@ -52,6 +58,12 @@ const navItems = [
           >
             {content.contact}
           </a>
+          <a href={join(lang, 'sign-in')} class="text-slate-300 hover:text-white text-sm font-medium">
+            {content.signIn}
+          </a>
+          <Button isLink={true} href={join(lang, 'sign-up')} variant="primary" size="small" class="ml-2">
+            {content.signUp}
+          </Button>
 
           <!-- Language Switcher -->
           <div class="relative group ml-4">
