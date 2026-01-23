@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 import { languages, ui, defaultLang } from '../i18n/translations';
 import Timeline from '../components/Timeline.astro';
 import OrgStructure from '../components/OrgStructure.astro';
+import CompanyProfile from '../components/CompanyProfile.astro';
 
 const lang = defaultLang;
 const content = ui[lang];
@@ -60,20 +61,7 @@ const showcaseImages = [
 		</section>
 
     <!-- Company Intro -->
-    <section id="company" class="py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-white mb-4">{content.company.introTitle}</h2>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {content.company.introParagraphs.map((p) => (
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6">
-              <p class="text-slate-300">{p}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <CompanyProfile title={content.company.introTitle} paragraphs={content.company.introParagraphs} />
 
     <section id="pricing" class="py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

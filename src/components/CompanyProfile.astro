@@ -1,0 +1,78 @@
+---
+interface Props {
+  title: string;
+  paragraphs: string[];
+}
+
+const { title, paragraphs } = Astro.props;
+---
+
+<section id="company" class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">{title}</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <!-- Card 1: Who We Are (Full Width / Large) -->
+      <div class="md:col-span-12 lg:col-span-7 group relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-800/50 p-8 hover:border-blue-500/50 transition-all duration-300">
+        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-all"></div>
+        
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+          <div class="flex-shrink-0 p-4 rounded-xl bg-blue-500/10 text-blue-400">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-white mb-3">Enterprise & Vision</h3>
+            <p class="text-slate-300 leading-relaxed">
+              {paragraphs[0]}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Image/Visual Decoration (Hidden on mobile or small, visible on LG) -->
+      <div class="hidden lg:block lg:col-span-5 relative rounded-2xl overflow-hidden border border-slate-700 group">
+         <img src="/images/factory-photo.svg" alt="Factory" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500 scale-105 group-hover:scale-110 transition-transform" />
+         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+         <div class="absolute bottom-6 left-6 right-6">
+            <div class="text-white font-bold text-lg">Modern Manufacturing</div>
+            <div class="text-slate-300 text-sm mt-1">Shenzhen · Guangxi · Hong Kong</div>
+         </div>
+      </div>
+
+      <!-- Card 3: Products & Services -->
+      <div class="md:col-span-6 group relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-800/50 p-8 hover:border-purple-500/50 transition-all duration-300">
+        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
+        
+        <div class="mb-6 inline-flex p-3 rounded-lg bg-purple-500/10 text-purple-400">
+           <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+           </svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Comprehensive Solutions</h3>
+        <p class="text-slate-300 leading-relaxed text-sm">
+          {paragraphs[1]}
+        </p>
+      </div>
+
+      <!-- Card 4: Global Reach -->
+      <div class="md:col-span-6 group relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-800/50 p-8 hover:border-green-500/50 transition-all duration-300">
+        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-green-500/10 rounded-full blur-2xl group-hover:bg-green-500/20 transition-all"></div>
+        
+        <div class="mb-6 inline-flex p-3 rounded-lg bg-green-500/10 text-green-400">
+           <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+           </svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Global Market</h3>
+        <p class="text-slate-300 leading-relaxed text-sm">
+          {paragraphs[2]}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
