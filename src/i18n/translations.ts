@@ -95,7 +95,7 @@ export const ui = {
       note: '各板塊互相協作，形成高效的供應與研發一體化能力。'
     },
     gallery: {
-      title: '產品展示',
+      title: '品牌展示',
       subtitle: '品牌形象與實拍',
       labels: ['產品實拍', '裝配工位', '工廠車間', '會議簽約'],
     },
@@ -260,7 +260,7 @@ export const ui = {
       note: 'All segments collaborate closely to form an efficient integrated capability of supply and R&D.'
     },
     gallery: {
-      title: 'Showcase',
+      title: 'Brand Showcase',
       subtitle: 'Brand imagery & product shots',
       labels: ['Product', 'Assembly Line', 'Factory Floor', 'Contract Signing'],
     },
