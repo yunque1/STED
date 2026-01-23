@@ -15,7 +15,6 @@ export const ui = {
       contact: '聯絡我們',
       signIn: '登入',
       signUp: '註冊',
-      terms: '條款',
     },
     hero: {
       companyName: 'STED 科技',
@@ -181,7 +180,6 @@ export const ui = {
       contact: 'Contact',
       signIn: 'Sign In',
       signUp: 'Sign Up',
-      terms: 'Terms',
     },
     hero: {
       companyName: 'STED TECHNOLOGY',
