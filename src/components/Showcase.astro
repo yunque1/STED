@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  labels: string[];
+}
+
+const { title, subtitle, labels } = Astro.props;
+
+const images = [
+  'https://source.unsplash.com/FO7JIlwjOtU/1600x900',
+  'https://source.unsplash.com/2JJ3wBHu4_0/1600x900',
+  'https://source.unsplash.com/alVFq_05CbA/1600x900',
+  'https://source.unsplash.com/n95VMLxqM2I/1600x900'
+];
+
+const fallbacks = [
+  '/images/product-photo.svg',
+  '/images/deployment-photo.svg',
+  '/images/factory-photo.svg',
+  '/images/meeting-photo.svg'
+];
+---
+
+<section id="showcase" class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">{title}</h2>
+      <p class="text-slate-400 max-w-2xl mx-auto text-lg">{subtitle}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]">
+      {images.map((img, i) => (
+        <div class={`group relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-800 ${i === 0 || i === 3 ? 'lg:col-span-2 lg:row-span-2' : ''}`}>
+          <img 
+            src={img} 
+            alt={labels[i]} 
+            loading="lazy" 
+            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" 
+            onerror={`this.onerror=null; this.src='${fallbacks[i]}'`} 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+          
+          <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <div class="inline-block px-3 py-1 rounded-full bg-blue-600/80 backdrop-blur-sm text-white text-xs font-bold mb-2 opacity-0 group-hover:opacity-100 transition-opacity delay-100">
+              Gallery
+            </div>
+            <h3 class="text-white font-bold text-lg drop-shadow-md">{labels[i]}</h3>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

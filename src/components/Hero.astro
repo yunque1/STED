@@ -15,36 +15,61 @@ import Button from './ui/Button.astro';
 import Wrapper from './ui/Wrapper.astro';
 ---
 
-<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
-    <img src="https://source.unsplash.com/2JJ3wBHu4_0/1600x900" alt="electronics manufacturing facility" class="absolute inset-0 w-full h-full object-cover opacity-25" onerror="this.onerror=null; this.style.display='none';" />
-    <img src="/images/chip-grid.svg" alt="chip grid" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-screen" />
-    <div class="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-20 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 mix-blend-soft-light"></div>
-    <div class="absolute -top-24 -left-24 w-[36rem] h-[36rem] rounded-full bg-gradient-to-tr from-pink-500/15 to-blue-500/15 blur-3xl"></div>
-    <div class="absolute -bottom-24 -right-24 w-[36rem] h-[36rem] rounded-full bg-gradient-to-tr from-indigo-500/15 to-emerald-500/15 blur-3xl"></div>
+<section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex items-center">
+  <!-- Dynamic Background -->
+  <div class="absolute inset-0 z-0 bg-slate-950">
+    <!-- Grid Pattern -->
+    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-20" style="background-size: 40px 40px; mask-image: linear-gradient(to bottom, transparent, black, transparent);"></div>
+    
+    <!-- Animated Orbs -->
+    <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] animate-pulse"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s;"></div>
+    
+    <!-- Overlay Image -->
+    <img src="https://source.unsplash.com/2JJ3wBHu4_0/1600x900" alt="electronics manufacturing" class="absolute inset-0 w-full h-full object-cover opacity-10 mix-blend-overlay" />
   </div>
 
   <Wrapper class="relative z-10 text-center">
-    <Text tag="h1" variant="displayXL" class="mb-8">
-      <span class="block text-slate-100 mb-2">{content.companyName}</span>
-      <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 drop-shadow-lg">
+    <div class="inline-flex items-center px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-sm font-medium mb-8 backdrop-blur-sm animate-fade-in-up">
+      <span class="flex h-2 w-2 rounded-full bg-blue-400 mr-2 animate-ping"></span>
+      {content.companyName}
+    </div>
+
+    <Text tag="h1" variant="displayXL" class="mb-8 tracking-tight">
+      <span class="block text-white mb-2 drop-shadow-lg">{content.companyName}</span>
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 drop-shadow-lg">
         {content.headline}
       </span>
     </Text>
 
-    <Text tag="p" variant="textBase" class="mt-6 max-w-3xl mx-auto text-xl text-slate-300">
+    <Text tag="p" variant="textBase" class="mt-6 max-w-3xl mx-auto text-xl text-slate-300 leading-relaxed">
       {content.subhead}
     </Text>
 
-    <div class="mt-10 flex justify-center gap-4">
-      <Button isLink={true} href="#contact" variant="primary" size="medium" class="shadow-blue-500/25 hover:shadow-blue-500/40">
+    <div class="mt-12 flex flex-col sm:flex-row justify-center gap-4">
+      <Button isLink={true} href="#contact" variant="primary" size="medium" class="shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-1 transition-transform">
         {content.ctaPrimary}
       </Button>
-      <Button isLink={true} href="#features" variant="secondary" size="medium" class="backdrop-blur">
+      <Button isLink={true} href="#features" variant="secondary" size="medium" class="backdrop-blur-md border border-white/10 hover:bg-white/5 hover:-translate-y-1 transition-transform">
         {content.ctaSecondary}
       </Button>
     </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-slate-500">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
   </Wrapper>
 </section>
+
+<style>
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+</style>

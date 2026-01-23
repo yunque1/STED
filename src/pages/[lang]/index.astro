@@ -7,6 +7,15 @@ import { languages, ui, defaultLang } from '../../i18n/translations';
 import Timeline from '../../components/Timeline.astro';
 import OrgStructure from '../../components/OrgStructure.astro';
 import CompanyProfile from '../../components/CompanyProfile.astro';
+import Features from '../../components/Features.astro';
+import Stats from '../../components/Stats.astro';
+import Pricing from '../../components/Pricing.astro';
+import Showcase from '../../components/Showcase.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Contact from '../../components/Contact.astro';
+import About from '../../components/About.astro';
+import ProcurementOrg from '../../components/ProcurementOrg.astro';
+import ProcurementModel from '../../components/ProcurementModel.astro';
 
 export function getStaticPaths() {
   return Object.keys(languages)
@@ -18,17 +27,6 @@ export function getStaticPaths() {
 
 const { lang } = Astro.params;
 const content = ui[lang as keyof typeof ui] || ui[defaultLang];
-const featureImages = [
-  { src: '/images/product-photo.svg', alt: 'Product photo' },
-  { src: '/images/factory-photo.svg', alt: 'Factory floor' },
-  { src: '/images/chip-grid.svg', alt: 'Circuit pattern' }
-];
-const showcaseImages = [
-  { src: 'https://source.unsplash.com/FO7JIlwjOtU/1600x900', alt: 'product' },
-  { src: 'https://source.unsplash.com/2JJ3wBHu4_0/1600x900', alt: 'assembly line' },
-  { src: 'https://source.unsplash.com/alVFq_05CbA/1600x900', alt: 'factory' },
-  { src: 'https://source.unsplash.com/n95VMLxqM2I/1600x900', alt: 'meeting' }
-];
 ---
 
 <Layout title={`${content.hero.companyName}`}>
@@ -36,248 +34,35 @@ const showcaseImages = [
 	<main>
 		<Hero content={content.hero} />
 		
-		<!-- Features Section -->
-		<section id="features" class="py-20 bg-slate-900/50">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="text-center mb-16">
-					<h2 class="text-3xl font-bold text-white mb-4">{content.features.title}</h2>
-					<p class="text-slate-400">{content.features.subtitle}</p>
-				</div>
-				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-					{content.features.items.map((item, index) => (
-						<div class="p-6 rounded-2xl bg-slate-800 border border-slate-700 hover:border-blue-500/50 transition-colors group">
-							<div class={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors ${
-                index === 0 ? 'bg-blue-500/10 text-blue-400 group-hover:text-blue-300' :
-                index === 1 ? 'bg-purple-500/10 text-purple-400 group-hover:text-purple-300' :
-                'bg-pink-500/10 text-pink-400 group-hover:text-pink-300'
-              }`}>
-								<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={
-                    index === 0 ? "M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" :
-                    index === 1 ? "M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" :
-                    "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  } />
-								</svg>
-							</div>
-              <img src={featureImages[index].src} alt={featureImages[index].alt} class="w-full h-32 object-cover rounded-lg border border-slate-700/50 mb-4 opacity-80" />
-							<h3 class="text-xl font-semibold text-white mb-2">{item.title}</h3>
-							<p class="text-slate-400">{item.desc}</p>
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
+		<Features title={content.features.title} subtitle={content.features.subtitle} items={content.features.items} />
 
-    <!-- Company Intro -->
     <CompanyProfile title={content.company.introTitle} paragraphs={content.company.introParagraphs} />
 
-    <section id="pricing" class="py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-white mb-3">{content.pricing.title}</h2>
-          <p class="text-slate-400">{content.pricing.subtitle}</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {content.pricing.tiers.map((t, i) => (
-            <div class={`rounded-2xl border p-6 bg-slate-900/60 ${i === 1 ? 'border-blue-500/50 shadow-lg shadow-blue-500/20' : 'border-slate-700'}`}>
-              <div class="flex items-baseline justify-between">
-                <h3 class="text-xl font-semibold text-white">{t.name}</h3>
-                <span class="text-sm text-slate-400">{t.price}</span>
-              </div>
-              <p class="mt-3 text-slate-300">{t.desc}</p>
-              <ul class="mt-6 space-y-2">
-                {t.features.map((f) => (
-                  <li class="flex items-start text-slate-300">
-                    <svg class="w-5 h-5 text-green-400 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.42l-7.5 7.5a1 1 0 01-1.42 0l-3.5-3.5a1 1 0 111.42-1.42l2.79 2.79 6.79-6.79a1 1 0 011.42 0z" clip-rule="evenodd"/></svg>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <div class="mt-6">
-                <a href="#contact" class={`w-full inline-flex justify-center px-6 py-3 rounded-full font-semibold transition-all ${i === 1 ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg' : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700'}`}>
-                  {t.cta}
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Pricing title={content.pricing.title} subtitle={content.pricing.subtitle} tiers={content.pricing.tiers} />
 
-    <!-- Stats -->
-    <section id="stats" class="py-20 bg-slate-900/50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-white mb-4">{content.stats.title}</h2>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {content.stats.items.map((s) => (
-            <div class="rounded-2xl bg-slate-800 border border-slate-700 p-6 text-center shadow-sm">
-              <div class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">{s.value}</div>
-              <div class="mt-2 text-slate-300 text-sm">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Stats title={content.stats.title} items={content.stats.items} />
 
-    <!-- Procurement Organization -->
-    <section id="procurement-org" class="py-20 bg-slate-900/50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-white mb-4">{content.procurementOrg.title}</h2>
-        </div>
-        <div class="relative bg-slate-800 rounded-2xl border border-slate-700 p-8 overflow-hidden">
-          <img src="/images/chip-grid.svg" alt="background pattern" class="absolute inset-0 w-full h-full object-cover opacity-10" />
-          <p class="relative text-slate-300">{content.procurementOrg.description}</p>
-        </div>
-      </div>
-    </section>
+    <ProcurementOrg title={content.procurementOrg.title} description={content.procurementOrg.description} />
 
-    <!-- Development Timeline -->
     <Timeline title={content.timeline.title} items={content.timeline.items} />
 
-    <!-- Organization Structure -->
     <OrgStructure title={content.org.title} top={content.org.top} units={content.org.units} />
 
-    <!-- Procurement & R&D Collaboration Model -->
-    <section id="procurement-model" class="py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-white mb-4">{content.procurementModel.title}</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {content.procurementModel.segments.map((seg) => (
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6">
-              <h3 class="text-lg font-semibold text-white mb-3">{seg.title}</h3>
-              <ul class="space-y-2">
-                {seg.bullets.map((b) => (
-                  <li class="flex items-start text-slate-300">
-                    <svg class="w-5 h-5 text-green-400 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.42l-7.5 7.5a1 1 0 01-1.42 0l-3.5-3.5a1 1 0 111.42-1.42l2.79 2.79 6.79-6.79a1 1 0 011.42 0z" clip-rule="evenodd"/></svg>
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <p class="text-slate-400 mt-6">{content.procurementModel.note}</p>
-      </div>
-    </section>
+    <ProcurementModel title={content.procurementModel.title} segments={content.procurementModel.segments} note={content.procurementModel.note} />
 
-    <!-- CTA -->
-    <section id="cta" class="py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="relative overflow-hidden rounded-2xl border border-slate-700 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 p-10">
-          <div class="text-center">
-            <h3 class="text-2xl font-bold text-white mb-3">{content.cta.title}</h3>
-            <p class="text-slate-300 mb-6">{content.cta.desc}</p>
-            <div class="flex justify-center gap-4">
-              <a href="#contact" class="px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all shadow-lg">{content.cta.primary}</a>
-              <a href="#company" class="px-8 py-3 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold transition-all border border-slate-700">{content.cta.secondary}</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <Showcase title={content.gallery.title} subtitle={content.gallery.subtitle} labels={content.gallery.labels} />
 
-    <section id="showcase" class="py-20 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-white mb-4">{content.gallery.title}</h2>
-          <p class="text-slate-400">{content.gallery.subtitle}</p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {showcaseImages.map((img, i) => (
-            <div class="group relative overflow-hidden rounded-2xl border border-slate-700 bg-slate-800">
-              <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-44 md:h-56 object-cover opacity-80 group-hover:opacity-100 transition-all duration-300" onerror={`this.onerror=null; this.src='/images/${['product-photo.svg','deployment-photo.svg','factory-photo.svg','meeting-photo.svg'][i]}'`} />
-              <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-600/20 mix-blend-screen"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-3 bg-slate-900/60 backdrop-blur-sm">
-                <p class="text-sm text-slate-200">{content.gallery.labels[i]}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Testimonials title={content.testimonials.title} items={content.testimonials.items} />
 
-    <section id="testimonials" class="py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-white mb-4">{content.testimonials.title}</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {content.testimonials.items.map((t) => (
-            <div class="rounded-2xl bg-slate-800 border border-slate-700 p-6">
-              <div class="text-slate-200 text-lg">“{t.quote}”</div>
-              <div class="mt-4 text-slate-400 text-sm">{t.author} · {t.role}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Contact title={content.contact.title} desc={content.contact.desc} groups={content.contact.groups} />
 
-    <!-- Contact -->
-    <section id="contact" class="py-20 bg-slate-900/50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-white mb-2">{content.contact.title}</h2>
-          <p class="text-slate-300">{content.contact.desc}</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {content.contact.groups.map((g) => (
-            <div class="rounded-2xl bg-slate-800 border border-slate-700 p-6 text-center shadow-sm">
-              <div class="text-slate-200 font-semibold mb-2">{g}</div>
-              <div class="text-slate-400 text-sm">Please add contact details here</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-		<!-- About/Why Us Section -->
-		<section id="about" class="py-20 relative overflow-hidden">
-			<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-slate-950 to-slate-900 -z-10"></div>
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-					<div>
-						<h2 class="text-3xl font-bold text-white mb-6">{content.about.whyUsTitle}</h2>
-						<div class="space-y-6">
-              {content.about.items.map((item, index) => (
-							<div class="flex">
-								<div class="flex-shrink-0">
-									<div class={`flex items-center justify-center h-12 w-12 rounded-md text-white ${index === 0 ? 'bg-blue-500' : 'bg-purple-500'}`}>
-										<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={index === 0 ? "M13 10V3L4 14h7v7l9-11h-7z" : "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"} />
-										</svg>
-									</div>
-								</div>
-								<div class="ml-4">
-									<h3 class="text-lg leading-6 font-medium text-white">{item.title}</h3>
-									<p class="mt-2 text-base text-slate-400">
-										{item.desc}
-									</p>
-								</div>
-							</div>
-              ))}
-						</div>
-					</div>
-					<div class="mt-10 lg:mt-0 relative">
-						<div class="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur-lg opacity-30"></div>
-						<div class="relative bg-slate-800 rounded-xl border border-slate-700 p-8 overflow-hidden">
-              <img src="/images/data-center.svg" alt="manufacturing background" class="absolute inset-0 w-full h-full object-cover opacity-10" />
-							<h3 class="text-xl font-bold text-white mb-4">{content.about.aboutTitle}</h3>
-							<p class="text-slate-300 mb-4">
-								{content.about.aboutDesc1}
-							</p>
-							<p class="text-slate-300">
-								{content.about.aboutDesc2}
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+		<About 
+      whyUsTitle={content.about.whyUsTitle} 
+      items={content.about.items} 
+      aboutTitle={content.about.aboutTitle} 
+      aboutDesc1={content.about.aboutDesc1} 
+      aboutDesc2={content.about.aboutDesc2} 
+    />
 	</main>
 	<Footer content={content.footer} />
 </Layout>
