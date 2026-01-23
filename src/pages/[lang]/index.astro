@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Hero from '../../components/Hero.astro';
 import Footer from '../../components/Footer.astro';
 import { languages, ui, defaultLang } from '../../i18n/translations';
+import Timeline from '../../components/Timeline.astro';
 
 export function getStaticPaths() {
   return Object.keys(languages)
@@ -145,31 +146,7 @@ const showcaseImages = [
     </section>
 
     <!-- Development Timeline -->
-    <section id="timeline" class="py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-white mb-4">{content.timeline.title}</h2>
-        </div>
-        <div class="relative overflow-x-auto">
-          <div class="absolute left-0 right-0 top-16 h-0 border-t border-dashed border-green-400 opacity-50"></div>
-          <div class="flex items-start gap-12 min-w-max px-2">
-            {content.timeline.items.map((item) => (
-              <div class="flex flex-col items-center">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-green-500 text-white flex items-center justify-center font-bold text-xl shadow-lg">
-                  {item.year}
-                </div>
-                <div class="mt-4 max-w-xs text-center text-slate-300">
-                  {item.desc}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div class="mt-10">
-          <img src="/images/timeline-visual.svg" alt={content.timeline.title} class="w-full rounded-2xl border border-slate-700 shadow-lg shadow-blue-500/10" />
-        </div>
-      </div>
-    </section>
+    <Timeline title={content.timeline.title} items={content.timeline.items} />
 
     <!-- Organization Structure -->
     <section id="org-structure" class="py-20 bg-slate-900/50">
