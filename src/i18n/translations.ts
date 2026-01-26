@@ -97,7 +97,7 @@ export const ui = {
     gallery: {
       title: '品牌展示',
       subtitle: '品牌形象與實拍',
-      labels: ['產品實拍', '裝配工位', '工廠車間', '會議簽約'],
+      labels: ['產品實拍', '自動選料設備', '自動稱重設備', '自動貼標設備'],
     },
     stats: {
       title: '數據與能力',
