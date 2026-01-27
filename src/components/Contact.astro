@@ -2,7 +2,7 @@
 interface Props {
   title: string;
   desc: string;
-  groups: string[];
+  groups: { name: string; email: string }[];
 }
 
 const { title, desc, groups } = Astro.props;
@@ -27,8 +27,8 @@ const { title, desc, groups } = Astro.props;
                   </svg>
                 </div>
                 <div>
-                  <div class="text-white font-semibold">{g}</div>
-                  <div class="text-slate-400 text-sm">contact@sted-tech.com</div>
+                  <div class="text-white font-semibold">{g.name}</div>
+                  <a href={`mailto:${g.email}`} class="text-slate-400 text-sm hover:text-blue-400 transition-colors">{g.email}</a>
                 </div>
               </div>
             ))}

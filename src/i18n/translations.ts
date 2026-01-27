@@ -164,7 +164,11 @@ export const ui = {
     contact: {
       title: '聯絡我們',
       desc: '請添加您的聯繫方式（郵箱/電話），我們將盡快回覆。',
-      groups: ['商務合作', '採購與供應鏈', '技術支持'],
+      groups: [
+        { name: '商務合作', email: 'samlee@szsted.cn' },
+        { name: '採購與供應鏈', email: 'cw@szsted.cn' },
+        { name: '技術支持', email: 'yw@szsted.cn' }
+      ],
     },
     footer: {
       companyName: 'STED施德科技',
@@ -329,7 +333,11 @@ export const ui = {
     contact: {
       title: 'Contact Us',
       desc: 'Please add your contact details (email/phone) and we will get back to you soon.',
-      groups: ['Business Cooperation', 'Procurement & Supply Chain', 'Technical Support'],
+      groups: [
+        { name: 'Business Cooperation', email: 'samlee@szsted.cn' },
+        { name: 'Procurement & Supply Chain', email: 'cw@szsted.cn' },
+        { name: 'Technical Support', email: 'yw@szsted.cn' }
+      ],
     },
     footer: {
       companyName: 'STED TECHNOLOGY',
