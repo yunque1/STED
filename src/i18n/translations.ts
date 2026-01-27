@@ -8,7 +8,7 @@ export const defaultLang = 'zh-hk';
 export const ui = {
   'zh-hk': {
     nav: {
-      brand: 'STED 科技',
+      brand: 'STED施德科技',
       home: '首頁',
       features: '核心業務',
       about: '關於我們',
@@ -17,7 +17,7 @@ export const ui = {
       signUp: '註冊',
     },
     hero: {
-      companyName: 'STED 科技',
+      companyName: 'STED施德科技',
       headline: '領航 PCBA 製造與小型電腦生產',
       subhead: '專注電子製造與整機交付，提供從 PCB 設計、SMT/DIP 裝配到測試與量產的一站式解決方案。',
       ctaPrimary: '開始合作',
@@ -54,13 +54,13 @@ export const ui = {
         },
       ],
       aboutTitle: '關於我們',
-      aboutDesc1: 'STED 科技是一家專注於 PCBA 製造與小型電腦整機生產的高科技企業。我們致力於為全球客戶提供先進的電子製造服務與解決方案。',
+      aboutDesc1: 'STED施德科技是一家專注於 PCBA 製造與小型電腦整機生產的高科技企業。我們致力於為全球客戶提供先進的電子製造服務與解決方案。',
       aboutDesc2: '依托強大的研發實力與供應鏈整合能力，我們已成功交付多款高性能板卡與小型計算設備，服務覆蓋北美、歐洲、中亞等多個國家和地區。我們不僅是電子製造商，更是您值得信賴的硬件與計算設備合作夥伴。',
     },
     company: {
       introTitle: '公司簡介',
       introParagraphs: [
-        'STED 科技是一家集研發、設計、生產、銷售為一體的現代化科技型企業，於 2018 年獲得深圳市高新技術企業資質。目前事業分佈於廣東深圳、廣西河池、香港及非洲等地。',
+        'STED施德科技是一家集研發、設計、生產、銷售為一體的現代化科技型企業，於 2018 年獲得深圳市高新技術企業資質。目前事業分佈於廣東深圳、廣西河池、香港及非洲等地。',
         '公司致力於向全球市場提供商用服務器、PC 電腦及周邊，電源、充電器、電子線材等成品，手機通訊、車載電子、智能家居、醫療電子等產品的 PCBA 組件等，提供從研發、設計、物料採購、SMT、DIP 直至完成品組裝、測試與老化的完整產業鏈服務。',
         '產品有自有品牌及 OEM 代工兩大品類，主要銷往日本、韓國、歐洲、北美、中國及東南亞等國家與地區，並在國內外市場上贏得了良好的品牌聲譽與客戶群體。'
       ]
@@ -167,8 +167,8 @@ export const ui = {
       groups: ['商務合作', '採購與供應鏈', '技術支持'],
     },
     footer: {
-      companyName: 'STED 科技',
-      copyright: '© {year} STED 科技. All rights reserved.',
+      companyName: 'STED施德科技',
+      copyright: '© {year} STED施德科技. All rights reserved.',
     },
   },
   'en': {
