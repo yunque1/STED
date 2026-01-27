@@ -102,7 +102,7 @@ export const ui = {
     stats: {
       title: '數據與能力',
       items: [
-        { value: '2018', label: '深圳市高新技術企業' },
+        { value: '國家認證', label: '高新技術企業' },
         { value: '15+', label: '採購與供應鏈經驗（年）' },
         { value: '99.9%', label: '設備在線率與穩定性' },
         { value: '多地', label: '全球多區運營覆蓋' },
@@ -115,7 +115,7 @@ export const ui = {
       secondary: '獲取方案',
     },
     pricing: {
-      title: '方案與定價',
+      title: '合作方針與流程',
       subtitle: '滿足從樣品到量產的不同需求',
       tiers: [
         {
@@ -267,7 +267,7 @@ export const ui = {
     stats: {
       title: 'Stats & Capabilities',
       items: [
-        { value: '2018', label: 'Shenzhen High-Tech Enterprise' },
+        { value: 'Certified', label: 'High-Tech Enterprise' },
         { value: '15+', label: 'Procurement & Supply Chain Experience (years)' },
         { value: '99.9%', label: 'Equipment Uptime & Stability' },
         { value: 'Global', label: 'Operations across multiple regions' },
